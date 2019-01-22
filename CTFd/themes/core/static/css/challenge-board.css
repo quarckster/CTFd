@@ -16,6 +16,10 @@
     margin: 0 auto;
 }
 
+.modal-dialog {
+    max-width: 1000px;
+}
+
 .btn-info {
     background-color: #5B7290 !important;
 }
