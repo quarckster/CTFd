@@ -20,8 +20,6 @@
 				</div>
 			{% endfor %}
 
-			<a class="btn btn-secondary btn-lg btn-block" href="{{ url_for('auth.oauth_login') }}">Login with Major League Cyber</a>
-
 			<hr>
 
 			<form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
@@ -43,11 +41,19 @@
 					</label>
 					<input class="form-control" type="password" name="password" id="password-input" {% if password %}value="{{ password }}"{% endif %}/>
 				</div>
-				<div class="row pt-3">
-					<div class="col-md-12">
-						<button type="submit" id="submit" tabindex="5" class="btn btn-md btn-primary btn-outlined float-right">Submit</button>
-					</div>
-				</div>
+                <div class="row pt-3">
+                    <div class="col-md-12">
+                        <div class="form-check form-check-inline">
+                            <input id="privacy-policy" type="checkbox" class="form-check-input">
+                            <label for="privacy-policy" class="form-check-label">"I consent to receiving a follow up email from Red Hat recruiting team after this event and I read <a href="https://www.redhat.com/en/about/privacy-policy">Red Hat's Privacy Statement"</a></label>
+                        </div>
+                    </<div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-12">
+                        <button type="submit" id="submit" tabindex="5" class="btn btn-md btn-primary btn-outlined float-right" disabled>Submit</button>
+                    </div>
+                </div>
 				<input type="hidden" name="nonce" value="{{ nonce }}">
 			</form>
 		</div>
@@ -56,4 +62,9 @@
 {% endblock %}
 
 {% block scripts %}
+<script type="text/javascript">
+	$("#privacy-policy").click(function() {
+	  $("#submit").attr("disabled", !this.checked);
+	});
+</script>
 {% endblock %}
