@@ -216,3 +216,12 @@ def themes(theme, path):
         return send_file(filename)
     else:
         abort(404)
+
+
+@views.route('/.well-known/acme-challenge/<path:path>')
+def acme_challenge(path):
+    filename = safe_join(app.root_path, '.well-known', 'acme-challenge', path)
+    if os.path.isfile(filename):
+        return send_file(filename)
+    else:
+        abort(404)
